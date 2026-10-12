@@ -1,0 +1,26 @@
+﻿@model BakeryInventorySystem.Models.StockOut
+@{
+    ViewBag.Title = "Add Stock Out"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box" style="max-width:500px;">
+    <h5>Add Stock Out</h5>
+    <form method="post" action="/StockOut/Create">
+        <div class="mb-3">
+            <label>Ingredient</label>
+            @Html.DropDownList("IngredientId", null, "-- Select Ingredient --", new { @class = "form-control" })
+        </div>
+        <div class="mb-3"><label>Quantity</label><input type="number" step="0.01" name="Quantity" class="form-control" required /></div>
+        <div class="mb-3">
+            <label>Reason</label>
+            <select name="Reason" class="form-control">
+                <option>Used in Production</option>
+                <option>Damaged</option>
+                <option>Expired</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/StockOut" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

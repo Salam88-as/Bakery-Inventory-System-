@@ -1,0 +1,37 @@
+﻿@model BakeryInventorySystem.Models.Product
+@{
+    ViewBag.Title = "Edit Product"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box" style="max-width:500px;">
+    <h5>Edit Product</h5>
+    <form method="post" action="/Products/Edit">
+        <input type="hidden" name="ProductId" value="@Model.ProductId" />
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="Name" value="@Model.Name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>Category</label>
+            @Html.DropDownList("CategoryId", null, "-- Select Category --", new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label>Price</label>
+            <input type="number" step="0.01" name="Price" value="@Model.Price" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>Stock Quantity</label>
+            <input type="number" name="StockQuantity" value="@Model.StockQuantity" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>Image URL</label>
+            <input type="text" name="ImageUrl" value="@Model.ImageUrl" class="form-control" />
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="IsActive" class="form-check-input" value="true" checked="@Model.IsActive" />
+            <label class="form-check-label">Active</label>
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
+        <a href="/Products" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

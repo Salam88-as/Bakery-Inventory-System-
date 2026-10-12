@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BakeryInventorySystem.Models.Ingredient>
+@{
+    ViewBag.Title = "Ingredients"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box">
+    <div class="d-flex justify-content-between mb-3">
+        <h5>🥣 Ingredients</h5>
+        <a href="/Ingredients/Create" class="btn btn-primary btn-sm">+ Add Ingredient</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr><th>Name</th><th>Current Stock</th><th>Unit</th><th>Reorder Level</th><th>Supplier</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.CurrentStock</td>
+                    <td>@item.Unit</td>
+                    <td>@item.ReorderLevel</td>
+                    <td>@(item.Supplier != null ? item.Supplier.Name : "-")</td>
+                    <td>
+                        @if (item.Status == "Low Stock")
+                        {
+                            <span class="text-danger fw-bold">@item.Status</span>
+                        }
+                        else
+                        {
+                            <span class="text-success fw-bold">@item.Status</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Ingredients/Edit/@item.IngredientId" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="/Ingredients/Delete/@item.IngredientId" class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this ingredient?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

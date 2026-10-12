@@ -1,0 +1,169 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f5f5;
+}
+
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #3E2723;
+    color: #fff;
+    padding: 15px 0;
+    flex-shrink: 0;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.nav-title {
+    padding: 0 20px;
+    font-size: 11px;
+    color: #bcaaa4;
+    margin-bottom: 8px;
+}
+
+.nav-link {
+    display: block;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+    .nav-link:hover, .nav-link.active {
+        background: #5D4037;
+        color: #fff;
+    }
+
+.user-box {
+    padding: 15px 20px;
+    font-size: 12px;
+    color: #d7ccc8;
+    border-top: 1px solid #4E342E;
+    margin-top: 15px;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.top-bar {
+    background: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+    .top-bar h4 {
+        margin: 0;
+        color: #3E2723;
+        font-weight: 700;
+    }
+
+.datetime {
+    background: #f0f0f0;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.content-area {
+    padding: 20px 30px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.stat-title {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.stat-sub {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+}
+
+.border-blue {
+    border-left-color: #2196F3;
+}
+
+.border-green {
+    border-left-color: #4CAF50;
+}
+
+.border-orange {
+    border-left-color: #FF9800;
+}
+
+.border-grey {
+    border-left-color: #607D8B;
+}
+
+.border-red {
+    border-left-color: #F44336;
+}
+
+.col-md-2-4 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+.panel-box {
+    background: #fff;
+    border-radius: 8px;
+    padding: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    height: 100%;
+}
+
+    .panel-box h6 {
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+.activity-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.activity-icon {
+    font-size: 20px;
+}
+
+table th {
+    font-size: 13px;
+    color: #555;
+}
+
+table td {
+    font-size: 13px;
+    vertical-align: middle;
+}

@@ -1,0 +1,18 @@
+﻿@model BakeryInventorySystem.Models.Supplier
+@{
+    ViewBag.Title = "Edit Supplier"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box" style="max-width:500px;">
+    <h5>Edit Supplier</h5>
+    <form method="post" action="/Suppliers/Edit">
+        <input type="hidden" name="SupplierId" value="@Model.SupplierId" />
+        <div class="mb-3"><label>Name</label><input type="text" name="Name" value="@Model.Name" class="form-control" required /></div>
+        <div class="mb-3"><label>Contact Person</label><input type="text" name="ContactPerson" value="@Model.ContactPerson" class="form-control" /></div>
+        <div class="mb-3"><label>Phone</label><input type="text" name="Phone" value="@Model.Phone" class="form-control" /></div>
+        <div class="mb-3"><label>Email</label><input type="text" name="Email" value="@Model.Email" class="form-control" /></div>
+        <div class="mb-3"><label>Address</label><textarea name="Address" class="form-control">@Model.Address</textarea></div>
+        <button type="submit" class="btn btn-success">Update</button>
+        <a href="/Suppliers" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

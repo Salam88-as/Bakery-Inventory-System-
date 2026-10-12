@@ -1,0 +1,138 @@
+﻿@model BakeryInventorySystem.Models.DashboardViewModel
+@using System.Text.Json
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Stat Cards -->
+<div class="row g-3">
+    <div class="col-md-2-4">
+        <div class="stat-card border-blue">
+            <div class="stat-title text-primary">Total Products</div>
+            <div class="stat-value">@Model.TotalProducts</div>
+            <div class="stat-sub">View all products</div>
+        </div>
+    </div>
+    <div class="col-md-2-4">
+        <div class="stat-card border-green">
+            <div class="stat-title text-success">Total Ingredients</div>
+            <div class="stat-value">@Model.TotalIngredients</div>
+            <div class="stat-sub">View all ingredients</div>
+        </div>
+    </div>
+    <div class="col-md-2-4">
+        <div class="stat-card border-orange">
+            <div class="stat-title text-warning">Low Stock Items</div>
+            <div class="stat-value">@Model.LowStockItems</div>
+            <div class="stat-sub">View low stock items</div>
+        </div>
+    </div>
+    <div class="col-md-2-4">
+        <div class="stat-card border-grey">
+            <div class="stat-title text-secondary">Today's Sales</div>
+            <div class="stat-value">$@Model.TodaySales.ToString("N2")</div>
+            <div class="stat-sub">View today's sales</div>
+        </div>
+    </div>
+    <div class="col-md-2-4">
+        <div class="stat-card border-red">
+            <div class="stat-title text-danger">Total Sales (This Month)</div>
+            <div class="stat-value">$@Model.MonthlySales.ToString("N2")</div>
+            <div class="stat-sub">View monthly sales</div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="row g-3 mt-1">
+    <div class="col-md-8">
+        <div class="panel-box">
+            <h6>Monthly Sales Overview</h6>
+            <canvas id="salesChart" height="100"></canvas>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel-box">
+            <h6>Stock Status</h6>
+            <canvas id="stockChart" height="180"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Tables -->
+<div class="row g-3 mt-1">
+    <div class="col-md-8">
+        <div class="panel-box">
+            <h6 class="text-warning">⚠ Low Stock Items</h6>
+            <table class="table table-hover">
+                <thead>
+                    <tr><th>Item Name</th><th>Category</th><th>Current Stock</th><th>Unit</th><th>Reorder Level</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.LowStockList)
+                    {
+                        <tr>
+                            <td>@item.ItemName</td>
+                            <td>@item.Category</td>
+                            <td>@item.CurrentStock</td>
+                            <td>@item.Unit</td>
+                            <td>@item.ReorderLevel</td>
+                            <td class="text-danger fw-bold">@item.Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel-box">
+            <h6>Recent Activities</h6>
+            @foreach (var act in Model.RecentActivities)
+            {
+                <div class="activity-item">
+                    <span class="activity-icon">@act.Icon</span>
+                    <div>
+                        <b>@act.Title</b><br />
+                        <span class="text-muted small">@act.Description</span><br />
+                        <span class="text-muted" style="font-size:11px">@act.DateTime</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        new Chart(document.getElementById('salesChart'), {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(JsonSerializer.Serialize(Model.Months)),
+                datasets: [{
+                    label: 'Sales',
+                    data: @Html.Raw(JsonSerializer.Serialize(Model.MonthlySalesData)),
+                    borderColor: '#4285F4',
+                    backgroundColor: 'rgba(66,133,244,0.1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    pointRadius: 5,
+                    fill: true
+                }]
+            },
+            options: { plugins: { legend: { display: false } } }
+        });
+
+        new Chart(document.getElementById('stockChart'), {
+            type: 'pie',
+            data: {
+                labels: ['In Stock', 'Low Stock', 'Out of Stock'],
+                datasets: [{
+                    data: [@Model.InStockCount, @Model.LowStockCount, @Model.OutOfStockCount],
+                    backgroundColor: ['#4CAF50', '#FF9800', '#F44336']
+                }]
+            },
+            options: { plugins: { legend: { position: 'right' } } }
+        });
+    </script>
+}

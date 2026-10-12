@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BakeryInventorySystem.Models.StockOut>
+@{
+    ViewBag.Title = "Stock Out"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box">
+    <div class="d-flex justify-content-between mb-3">
+        <h5>⬆ Stock Out</h5>
+        <a href="/StockOut/Create" class="btn btn-primary btn-sm">+ Add Stock Out</a>
+    </div>
+    <table class="table table-hover">
+        <thead><tr><th>Ingredient</th><th>Quantity</th><th>Reason</th><th>Date</th></tr></thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(item.Ingredient != null ? item.Ingredient.Name : "-")</td>
+                    <td>@item.Quantity @(item.Ingredient != null ? item.Ingredient.Unit : "")</td>
+                    <td>@item.Reason</td>
+                    <td>@item.DateOut.ToString("dd/MM/yyyy hh:mm tt")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  

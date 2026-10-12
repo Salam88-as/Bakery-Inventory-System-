@@ -1,0 +1,20 @@
+﻿@model BakeryInventorySystem.Models.Category
+@{
+    ViewBag.Title = "Add Category"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box" style="max-width:500px;">
+    <h5>Add Category</h5>
+    <form method="post" action="/Categories/Create">
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" name="Name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea name="Description" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/Categories" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

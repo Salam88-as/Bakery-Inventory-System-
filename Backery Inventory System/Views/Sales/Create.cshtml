@@ -1,0 +1,26 @@
+﻿@model BakeryInventorySystem.Models.Sale
+@{
+    ViewBag.Title = "New Sale"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box" style="max-width:500px;">
+    <h5>New Sale</h5>
+    <form method="post" action="/Sales/Create">
+        <div class="mb-3"><label>Customer Name</label><input type="text" name="CustomerName" class="form-control" /></div>
+        <div class="mb-3">
+            <label>Product</label>
+            @Html.DropDownList("ProductId", null, "-- Select Product --", new { @class = "form-control" })
+        </div>
+        <div class="mb-3"><label>Quantity</label><input type="number" name="Quantity" class="form-control" value="1" min="1" /></div>
+        <div class="mb-3">
+            <label>Payment Method</label>
+            <select name="PaymentMethod" class="form-control">
+                <option>Cash</option>
+                <option>Card</option>
+                <option>Online</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Complete Sale</button>
+        <a href="/Sales" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

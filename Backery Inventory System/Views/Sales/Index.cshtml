@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BakeryInventorySystem.Models.Sale>
+@{
+    ViewBag.Title = "Sales"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box">
+    <div class="d-flex justify-content-between mb-3">
+        <h5>💰 Sales</h5>
+        <a href="/Sales/Create" class="btn btn-primary btn-sm">+ New Sale</a>
+    </div>
+    <table class="table table-hover">
+        <thead><tr><th>Invoice No</th><th>Customer</th><th>Date</th><th>Payment Method</th><th>Total</th></tr></thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.InvoiceNo</td>
+                    <td>@item.CustomerName</td>
+                    <td>@item.SaleDate.ToString("dd/MM/yyyy hh:mm tt")</td>
+                    <td>@item.PaymentMethod</td>
+                    <td>$@item.TotalAmount.ToString("N2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

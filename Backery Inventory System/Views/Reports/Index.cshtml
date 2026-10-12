@@ -1,0 +1,89 @@
+﻿@model BakeryInventorySystem.Models.ReportViewModel
+@{
+    ViewBag.Title = "Reports"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box mb-3">
+    <h5>📊 Reports</h5>
+    <form method="get" action="/Reports" class="row g-2 align-items-end">
+        <div class="col-auto">
+            <label>From</label>
+            <input type="date" name="fromDate" value="@Model.FromDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+        <div class="col-auto">
+            <label>To</label>
+            <input type="date" name="toDate" value="@Model.ToDate.ToString("yyyy-MM-dd")" class="form-control" />
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </form>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="stat-card border-blue">
+            <div class="stat-title text-primary">Total Sales (Selected Range)</div>
+            <div class="stat-value">$@Model.TotalSalesAmount.ToString("N2")</div>
+            <div class="stat-sub">@Model.TotalSalesCount transactions</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-1">
+    <div class="col-md-6">
+        <div class="panel-box">
+            <h6>🏆 Top 5 Products (By Revenue)</h6>
+            <table class="table table-hover">
+                <thead><tr><th>Product</th><th>Qty Sold</th><th>Revenue</th></tr></thead>
+                <tbody>
+                    @foreach (var p in Model.TopProducts)
+                    {
+                        <tr>
+                            <td>@p.ProductName</td>
+                            <td>@p.TotalQuantitySold</td>
+                            <td>$@p.TotalRevenue.ToString("N2")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel-box">
+            <h6 class="text-warning">⚠ Low Stock Report</h6>
+            <table class="table table-hover">
+                <thead><tr><th>Ingredient</th><th>Current</th><th>Reorder Level</th></tr></thead>
+                <tbody>
+                    @foreach (var i in Model.LowStockReport)
+                    {
+                        <tr>
+                            <td>@i.Name</td>
+                            <td>@i.CurrentStock @i.Unit</td>
+                            <td>@i.ReorderLevel</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="panel-box mt-3">
+    <h6>📄 Sales Detail</h6>
+    <table class="table table-hover">
+        <thead><tr><th>Invoice No</th><th>Customer</th><th>Date</th><th>Payment</th><th>Amount</th></tr></thead>
+        <tbody>
+            @foreach (var s in Model.SalesList)
+            {
+                <tr>
+                    <td>@s.InvoiceNo</td>
+                    <td>@s.CustomerName</td>
+                    <td>@s.SaleDate.ToString("dd/MM/yyyy hh:mm tt")</td>
+                    <td>@s.PaymentMethod</td>
+                    <td>$@s.TotalAmount.ToString("N2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

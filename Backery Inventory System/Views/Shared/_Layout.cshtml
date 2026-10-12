@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Bakery Inventory System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="sidebar">
+            <div class="logo-box">🧁 <span><b>Bakery</b><br />Inventory System</span></div>
+            <div class="nav-title">NAVIGATION</div>
+            <a href="/Dashboard" class="nav-link active">🏠 Dashboard</a>
+            <a href="/Products" class="nav-link">🎂 Products</a>
+            <a href="/Categories" class="nav-link">🎨 Categories</a>
+            <a href="/Ingredients" class="nav-link">🥣 Ingredients</a>
+            <a href="/StockIn" class="nav-link">⬇ Stock In</a>
+            <a href="/StockOut" class="nav-link">⬆ Stock Out</a>
+            <a href="/Sales" class="nav-link">💰 Sales</a>
+            <a href="/Suppliers" class="nav-link">👥 Suppliers</a>
+            <a href="/Reports" class="nav-link">📊 Reports</a>
+            <a href="/Users" class="nav-link">🧑 Users</a>
+            <a href="/Account/Logout" class="nav-link">🔒 Logout</a>
+            <div class="user-box">
+                Logged in as: <b>@Context.Session.GetString("UserName")</b><br />
+                Role: @Context.Session.GetString("UserRole")<br />
+                <a href="/Account/ChangePassword" style="color:#ffcc80; font-size:12px;">🔑 Change Password</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="top-bar">
+                <h4>@ViewBag.Title</h4>
+                <div class="datetime">📅 @DateTime.Now.ToString("dddd, MMM dd, yyyy   hh:mm:ss tt")</div>
+            </div>
+            <div class="content-area">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

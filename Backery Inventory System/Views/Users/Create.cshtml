@@ -1,0 +1,28 @@
+﻿@model BakeryInventorySystem.Models.AppUser
+@{
+    ViewBag.Title = "Add User"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel-box" style="max-width:500px;">
+    <h5>Add User</h5>
+    <form method="post" action="/Users/Create">
+        <div class="mb-3"><label>Full Name</label><input type="text" name="FullName" class="form-control" required /></div>
+        <div class="mb-3"><label>Username</label><input type="text" name="Username" class="form-control" required /></div>
+        <div class="mb-3"><label>Password</label><input type="password" name="PasswordHash" class="form-control" required /></div>
+        <div class="mb-3"><label>Password</label><input type="password" name="password" class="form-control" required /></div>
+        <div class="mb-3">
+            <label>Role</label>
+            <select name="Role" class="form-control">
+                <option>Administrator</option>
+                <option>Manager</option>
+                <option>Staff</option>
+            </select>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="IsActive" class="form-check-input" checked value="true" />
+            <label class="form-check-label">Active</label>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/Users" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
